@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  
+  has_many :ownerships , foreign_key: "user_id" , dependent: :destroy
+  has_many :items , through: :ownerships
 end
