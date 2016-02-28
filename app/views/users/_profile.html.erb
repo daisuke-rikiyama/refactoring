@@ -1,0 +1,15 @@
+<% content_for :head do %>
+  <title><%= user.name %> - Let's use</title>
+  <meta name="description" content="<%= user.name %>のモノページ。
+    <%= user.name %>の欲しいモノや持っているモノの一覧を表示しています。">
+<% end %>
+<div class="user-profile">
+  <div class="icon">
+    <%= gravatar_for user, size: 100 %>
+  </div>
+  <div class="name">
+    <h1><%= user.name %><h1>
+  </div>
+  <div class="status">
+  </div>
+</div>
