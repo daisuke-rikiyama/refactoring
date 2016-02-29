@@ -18,6 +18,30 @@
           　<%= item.get('ItemAttributes/Title') %>
           </p>
         </div>
+        <div class="action clearfix">
+          <% unless current_user.want?(item) %>
+            <%= link_to "" , ownerships_path(asin: item.get('ASIN') , type: "Want") ,
+                      :class => "want-#{item.get('ASIN')} btn-want btn btn-danger btn-sm want",
+                      :remote => true,
+                      :method => :post %>
+          <% else %>
+            <%= link_to "" , ownership_path(id: item.id , type: "Want"),
+                      class: "want-#{item.get('ASIN')} btn-want btn btn-danger btn-sm wanted",
+                      remote: true,
+                      method: :delete %>
+          <% end %>
+          <% unless current_user.have?(item) %>
+            <%= link_to "" , ownerships_path(asin: item.get('ASIN') , type: "Have") ,
+                      :class => "have-#{item.get('ASIN')} btn-have btn btn-warning btn-sm have",
+                      :remote => true,
+                      :method => :post %>
+          <% else %>
+            <%= link_to "" , ownerships_path(id: item.id , type: "Have"),
+                      class: "have-#{item.get('ASIN')} btn-have btn btn-warning btn-sm haved",
+                      remote: true,
+                      method: :delete %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

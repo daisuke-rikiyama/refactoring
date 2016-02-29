@@ -55,3 +55,50 @@ user19 = User.create(name: "abe"      , email: "test18@example.com" , password: 
 user20 = User.create(name: "mori"     , email: "test19@example.com" , password: "kirapass" , password_confirmation: "kirapass")
 user21 = User.create(name: "ikeda"    , email: "test20@example.com" , password: "kirapass" , password_confirmation: "kirapass")
 user22 = User.create(name: "hashimoto", email: "test21@example.com" , password: "kirapass" , password_confirmation: "kirapass")
+
+users = User.all
+group1 = users[0..5]
+group2 = users[6..10]
+group3 = users[11..14]
+group4 = users[15..17]
+group5 = users[18..19]
+
+group6 = users[16..21]
+group7 = users[11..15]
+group8 = users[7..10]
+group9 = users[4..6]
+group10 = users[2..3]
+
+# 以下の仮定においてitem[10,9,8,7,6,5,4,3,2,1]の順でwantedランキング表示されるかどうか？
+# 結果 成功
+group1.each { |user| user.want(item10) }
+group2.each { |user| user.want(item10) }
+group1.each { |user| user.want(item9) }
+group3.each { |user| user.want(item9) }
+group1.each { |user| user.want(item8) }
+group4.each { |user| user.want(item8) }
+group1.each { |user| user.want(item7) }
+group5.each { |user| user.want(item7) }
+group1.each { |user| user.want(item6) }
+group2.each { |user| user.want(item5) }
+group3.each { |user| user.want(item4) }
+group4.each { |user| user.want(item3) }
+group5.each { |user| user.want(item2) }
+user22.want(item1)
+
+# 以下の仮定においてitem[5,3,8,2,4,1,10,6,9,7]の順でhavedランキング表示されるかどうか？
+# 結果 成功
+group6.each { |user| user.have(item5) }
+group7.each { |user| user.have(item5) }
+group6.each { |user| user.have(item3) }
+group8.each { |user| user.have(item3) }
+group6.each { |user| user.have(item8) }
+group9.each { |user| user.have(item8) }
+group6.each { |user| user.have(item2) }
+group10.each { |user| user.have(item2) }
+group6.each { |user| user.have(item4) }
+group7.each { |user| user.have(item1) }
+group8.each { |user| user.have(item10) }
+group9.each { |user| user.have(item6) }
+group10.each { |user| user.have(item9) }
+user1.have(item7)

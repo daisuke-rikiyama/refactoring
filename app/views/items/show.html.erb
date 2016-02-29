@@ -28,14 +28,22 @@
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
-          
+          <% if @have_users %>
+            <% @have_users.each do |have_user| %>
+              <%= link_to (gravatar_for have_user, size: 25), have_user %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Wantしたユーザー一覧 %>
-          
+          <% if @want_users %>
+            <% @want_users.each do |want_user| %>
+              <%= link_to (gravatar_for want_user, size: 25), want_user %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
