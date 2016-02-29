@@ -15,10 +15,7 @@
   <body>
   
     <%= render 'layouts/header' %>
-    
-    <div class="alert alert-info", align="center">
-      <%= notice if notice %>
-    </div>
+
     <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %>", align="center">
         <%= message %>
