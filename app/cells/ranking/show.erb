@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-sm-6 col-sm-offset-3">
+    <div class="row">
+      <% unless @items.empty? %>
+        <% i = 0 %>
+        <% @items.each do |item| %>
+          <div class="col-sm-2">
+            <span>
+                <h2><%= i+=1 %> 位</h2>
+            </span>
+          </div>
+          <div class="col-sm-10">
+            <div class="row">
+              <div>
+                <% unless item.large_image == nil %>
+                  <%= link_to image_tag(item.large_image, alt: item.title), item_url(id: item.id) %>
+                <% else %>
+                  <%= link_to image_tag('no-image.png', alt: item.title), item_url(id: item.id) %>
+                <% end %>
+              </div>
+              <div class="col-sm-8">
+                <h3><%= item.title %></h3>
+              </div>
+              <br>
+              <br>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div align="center">
+          <h2>No Items!!</h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
