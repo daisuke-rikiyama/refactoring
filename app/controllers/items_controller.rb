@@ -15,6 +15,8 @@ class ItemsController < ApplicationController
   def show
     @want_users = @item.want_users
     @have_users = @item.have_users
+    @message_boards = @item.message_boards.order(updated_at: :desc)
+    @message_board = current_user.message_boards.build(item_id: @item.id)
   end
 
   private

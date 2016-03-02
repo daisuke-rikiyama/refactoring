@@ -20,8 +20,6 @@ class MessageBoardsController < ApplicationController
     
     def show
         @message_board = MessageBoard.find(params[:id])
-        @message = current_user.messages.build
-        @messages = @message_board.messages.order(updated_at: :asc)
     end
     
     def destroy
@@ -33,11 +31,8 @@ class MessageBoardsController < ApplicationController
     end
     
     private
-    def general_board_params
-        params.require(:message_board).permit(:title)
-    end
     
     def message_board_params
-        params.require(:message_board).permit(:title, :item_id)
+        params.require(:message_board).permit(:title , :item_id)
     end
 end
