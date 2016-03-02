@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   delete   'logout', to: 'sessions#destroy'
   get      'ranking/have', to: 'ranking#have', as: 'ranking_have'
   get      'ranking/want', to: 'ranking#want', as: 'ranking_want'
+  get      'message_boards/all', to: 'message_boards#index', as: 'all_message_boards'
   
-  resources :users
+  resources :users do
+    get 'message_boards' , to: 'users#message_boards', as: 'message_boards'
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
+  resources :message_boards, only: [:create, :show, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

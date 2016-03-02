@@ -1,0 +1,42 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      掲示板一覧
+    </div>
+    <div class="panel-body">
+      タイトル、投稿者、お気に入りボタン、削除ボタンを表示します。
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>関連商品</th>
+            <th>Title</th>
+            <th>投稿者</th>
+            <th>お気に入りボタン</th>
+            <th>削除ボタン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @message_boards.each do |message_board| %>
+            <tr>
+              <td><%= message_board.id %></td>
+              <% if message_board.item %>
+                <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-success" %></td>
+              <% else %>
+                <td>雑談掲示板</td>
+              <% end %>
+              <td><%= link_to message_board.title, message_board, class: "label label-info" ,style: "color: #fff;" %></td>
+              <td><%= link_to message_board.user.name, message_board.user, class: "label label-default" , style: "color: #fff;" %></td>
+              <td><%= link_to "faborite", '#', class: "btn btn-sm btn-warning" %></td>
+              <% if current_user == message_board.user %>
+                <td><%= link_to "delete", message_board, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

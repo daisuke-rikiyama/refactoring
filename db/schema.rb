@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228130443) do
+ActiveRecord::Schema.define(version: 20160302014847) do
 
   create_table "items", force: :cascade do |t|
     t.string   "asin"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20160228130443) do
   end
 
   add_index "items", ["asin"], name: "index_items_on_asin", unique: true
+
+  create_table "message_boards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "message_boards", ["item_id"], name: "index_message_boards_on_item_id"
+  add_index "message_boards", ["updated_at"], name: "index_message_boards_on_updated_at"
+  add_index "message_boards", ["user_id"], name: "index_message_boards_on_user_id"
 
   create_table "ownerships", force: :cascade do |t|
     t.integer  "user_id"
