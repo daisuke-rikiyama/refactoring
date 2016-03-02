@@ -18,6 +18,10 @@ class UsersController < ApplicationController
       @items = @user.items.group('items.id')
     end
     
+    def message_boards
+      @message_boards = current_user.message_boards.order(updated_at: :desc)
+    end
+    
     private
     
     def set_user

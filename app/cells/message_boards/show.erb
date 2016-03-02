@@ -23,12 +23,12 @@
             <tr>
               <td><%= message_board.id %></td>
               <% if message_board.item %>
-                <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-info" %></td>
+                <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-success" %></td>
               <% else %>
-                <td></td>
+                <td>雑談掲示板</td>
               <% end %>
-              <td><%= link_to message_board.title, message_board, class: "label label-info" %></td>
-              <td><%= link_to message_board.user.name, message_board.user, class: "label label-primary" %></td>
+              <td><%= link_to message_board.title, message_board, class: "label label-info" ,style: "color: #fff;" %></td>
+              <td><%= link_to message_board.user.name, message_board.user, class: "label label-default" , style: "color: #fff;" %></td>
               <td><%= link_to "faborite", '#', class: "btn btn-sm btn-warning" %></td>
               <% if current_user == message_board.user %>
                 <td><%= link_to "delete", message_board, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>

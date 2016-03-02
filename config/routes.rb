@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete   'logout', to: 'sessions#destroy'
   get      'ranking/have', to: 'ranking#have', as: 'ranking_have'
   get      'ranking/want', to: 'ranking#want', as: 'ranking_want'
+  get      'message_boards/all', to: 'message_boards#index', as: 'all_message_boards'
   
   resources :users do
     get 'message_boards' , to: 'users#message_boards', as: 'message_boards'

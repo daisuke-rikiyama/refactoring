@@ -1,0 +1,5 @@
+<h1 align="center">Message Board List</h1>
+
+<%= cell(:message_boards).(:show , message_boards: @message_boards) %>
+
+<%= render 'post_message_board', { message_board: @message_board, item: @item } %>
