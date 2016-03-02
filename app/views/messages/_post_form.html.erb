@@ -1,0 +1,21 @@
+<% if logged_in? %>
+  <div class="container message_board_form">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="row">
+        <p><span class="content">Content</span></p>
+        <%= form_for(message , url: message_board_messages_path(message_board_id: message_board.id)) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class="form-group">
+            <%= f.hidden_field :message_board_id, value: message_board.id %>
+          </div>
+          <div class="form-group">
+            <%= f.cktext_area :content, class: "form-control", placeholder: "input message" %>
+          </div>
+          <div class="submit-group">
+          <%= f.submit "Post", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

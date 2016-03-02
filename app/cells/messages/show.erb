@@ -1,0 +1,36 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      投稿一覧
+    </div>
+    <div class="panel-body">
+      投稿者、内容、編集ボタン、削除ボタンを表示します。
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>投稿者</th>
+            <th>内容</th>
+            <th>編集ボタン</th>
+            <th>削除ボタン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @messages.each do |message| %>
+            <tr>
+              <td><%= message.id %></td>
+              <td><%= message.user.name %></td>
+              <td><%= message.content %></td>
+              <% if current_user == message.user %>
+                <td><%= link_to "edit", edit_message_board_message_path(message_board_id: message.message_board.id, id: message.id), class: "btn btn-sm btn-warning", data: { no_turbolink: true } %></td>
+                <td><%= link_to "delete", message_board_message_path(message_board_id: message.message_board.id, id: message.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
