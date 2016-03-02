@@ -1,1 +1,5 @@
-<h1>テスト</h1>
+<h1 align="center"><%= @message_board.title %></h1>
+
+<%= cell(:messages).(:show , messages: @messages) %>
+
+<%= render 'messages/post_form' , { message_board: @message_board , message: @message } %>

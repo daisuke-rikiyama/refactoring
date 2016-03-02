@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302014847) do
+ActiveRecord::Schema.define(version: 20160302144816) do
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "items", force: :cascade do |t|
     t.string   "asin"
@@ -39,6 +55,18 @@ ActiveRecord::Schema.define(version: 20160302014847) do
   add_index "message_boards", ["item_id"], name: "index_message_boards_on_item_id"
   add_index "message_boards", ["updated_at"], name: "index_message_boards_on_updated_at"
   add_index "message_boards", ["user_id"], name: "index_message_boards_on_user_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "message_board_id"
+    t.text     "content"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "messages", ["message_board_id"], name: "index_messages_on_message_board_id"
+  add_index "messages", ["user_id", "updated_at"], name: "index_messages_on_user_id_and_updated_at"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "ownerships", force: :cascade do |t|
     t.integer  "user_id"
