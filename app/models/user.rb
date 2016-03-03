@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :have_items , through: :haves, source: :item
   has_many :message_boards , foreign_key: "user_id"
   has_many :messages , foreign_key: "user_id" , dependent: :destroy
+  has_many :favorites, foreign_key: "user_id", dependent: :destroy
+  has_many :favorited_message_boards, through: :favorites, source: :message_board
   
   def have(item)
     haves.find_or_create_by(item_id: item.id)
@@ -40,5 +42,18 @@ class User < ActiveRecord::Base
 
   def want?(item)
     want_items.include?(item)
+  end
+  
+  def add_favorite(message_board)
+    favorites.find_or_create_by(message_board_id: message_board.id)
+  end
+  
+  def release_favorite(message_board)
+    favorite = favorites.find_by(message_board_id: message_board.id)
+    favorite.destroy if favorite
+  end
+  
+  def favorite?(message_board)
+    favorited_message_boards.include?(message_board)
   end
 end

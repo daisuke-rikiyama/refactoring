@@ -54,6 +54,6 @@
   </div>
 </div>
 
-<%= cell(:message_boards).(:show , message_boards: @message_boards) %>
+<%= render 'shared/boards_list', message_boards: @message_boards %>
 
 <%= render 'message_boards/post_message_board' , { message_board: @message_board, item: @item } %>

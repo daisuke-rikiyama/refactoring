@@ -1,0 +1,1 @@
+$(".favorite-<%= @message_board.id %>").replaceWith("<%= escape_javascript(render('shared/favorite' , message_board: @message_board)) %>");

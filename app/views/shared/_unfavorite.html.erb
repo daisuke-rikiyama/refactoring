@@ -1,0 +1,6 @@
+<%= link_to "Unfavorite" ,
+    message_board_favorite_path(current_user.favorites.find_by(message_board_id: message_board.id) ,
+                                                                message_board_id: message_board.id) ,
+    class: "favorite-#{message_board.id} btn btn-warning btn-sm" ,
+    remote: true,
+    method: :delete %>

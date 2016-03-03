@@ -1,0 +1,4 @@
+<%= link_to "Favorite" , message_board_favorites_path(message_board_id: message_board.id) ,
+    class: "favorite-#{message_board.id} btn btn-warning btn-sm",
+    remote: true,
+    method: :post %>
