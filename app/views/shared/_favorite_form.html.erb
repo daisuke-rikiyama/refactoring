@@ -1,0 +1,7 @@
+<div id="favorite">
+  <% if current_user.favorite? message_board %>
+    <%= render 'shared/unfavorite', message_board: message_board %>
+  <% else %>
+    <%= render 'shared/favorite', message_board: message_board %>
+  <% end %>
+</div>

@@ -43,4 +43,17 @@ class User < ActiveRecord::Base
   def want?(item)
     want_items.include?(item)
   end
+  
+  def add_favorite(message_board)
+    favorites.find_or_create_by(message_board_id: message_board.id)
+  end
+  
+  def release_favorite(message_board)
+    favorite = favorites.find_by(message_board_id: message_board.id)
+    favorite.destroy if favorite
+  end
+  
+  def favorite?(message_board)
+    favorited_message_boards.include?(message_board)
+  end
 end

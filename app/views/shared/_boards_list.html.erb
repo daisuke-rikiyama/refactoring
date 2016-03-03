@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @message_boards.each do |message_board| %>
+          <% message_boards.each do |message_board| %>
             <tr>
               <td><%= message_board.id %></td>
               <% if message_board.item %>
@@ -29,7 +29,7 @@
               <% end %>
               <td><%= link_to message_board.title, message_board, class: "label label-info" ,style: "color: #fff;" %></td>
               <td><%= link_to message_board.user.name, message_board.user, class: "label label-default" , style: "color: #fff;" %></td>
-              <td><%= link_to "faborite", '#', class: "btn btn-sm btn-warning" %></td>
+              <td><%= render 'shared/favorite_form', message_board: message_board %></td>
               <% if current_user == message_board.user %>
                 <td><%= link_to "delete", message_board, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>
               <% end %>

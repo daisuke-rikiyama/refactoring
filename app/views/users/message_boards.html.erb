@@ -2,4 +2,8 @@
 
 <h2>Posted Message Boards</h2>
 
-<%= cell(:message_boards).(:show , message_boards: @message_boards) %>
+<%= render 'shared/boards_list', message_boards: @message_boards %>
+
+<h2>Favorite Message Boards</h2>
+
+<%= render 'shared/boards_list', message_boards: @favorite_boards %>

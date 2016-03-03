@@ -22,6 +22,8 @@ module Refactoring
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    # Ajax
+    config.action_view.embed_authenticity_token_in_remote_forms = true
     #自動生成しないもの
     config.generators do |g|
       g.stylesheets false
