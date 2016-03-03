@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :have_items , through: :haves, source: :item
   has_many :message_boards , foreign_key: "user_id"
   has_many :messages , foreign_key: "user_id" , dependent: :destroy
+  has_many :favorites, foreign_key: "user_id", dependent: :destroy
+  has_many :favorited_message_boards, through: :favorites, source: :message_board
   
   def have(item)
     haves.find_or_create_by(item_id: item.id)
