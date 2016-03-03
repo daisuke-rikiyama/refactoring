@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
     
     private
     def message_params
-        params.require(:message).permit(:message_board_id, :content)
+        params.require(:message).permit(:message_board_id, :content, :video_url)
     end
     
     def set_message
