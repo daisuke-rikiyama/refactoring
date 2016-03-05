@@ -3,14 +3,20 @@ class MessagesController < ApplicationController
     before_action :set_message, only: [:edit, :update]
     
     def create
+        session[:url] ||= request.referrer
+        @path = Rails.application.routes.recognize_path(session[:url])
         @message = current_user.messages.build(message_params)
         
+        
         if @message.save
+            session.delete(:url)
             flash[:success] = "Message created!"
-            redirect_to :back
+            redirect_to @path
         else
-            flash[:danger] = "Failed to create!!"
-            redirect_to :back
+            @message_board = MessageBoard.find(@path[:id])
+            @messages = @message_board.messages.order(updated_at: :asc)
+            render template: 'message_boards/show'
+            return
         end
     end
     

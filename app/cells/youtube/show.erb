@@ -1,3 +1,5 @@
 <div class="youtube">
-  <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= @movie_id %>" frameborder="0" allowfullscreen></iframe>
+  <% if @movie_id %>
+    <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= @movie_id %>" frameborder="0" allowfullscreen></iframe>
+  <% end %>
 </div>
