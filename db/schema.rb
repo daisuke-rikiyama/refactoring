@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303005721) do
+ActiveRecord::Schema.define(version: 20160303111721) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160303005721) do
     t.text     "content"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "video_url"
   end
 
   add_index "messages", ["message_board_id"], name: "index_messages_on_message_board_id"

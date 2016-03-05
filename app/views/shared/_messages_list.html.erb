@@ -22,7 +22,11 @@
             <tr>
               <td><%= message.id %></td>
               <td><%= message.user.name %></td>
-              <td><%= message.content %></td>
+              <td>
+                <%== message.content %>
+                
+                <%= cell(:youtube).(:show , message: message) %>
+              </td>
               <% if current_user == message.user %>
                 <td><%= link_to "edit", edit_message_board_message_path(message_board_id: message.message_board.id, id: message.id), class: "btn btn-sm btn-warning", data: { no_turbolink: true } %></td>
                 <td><%= link_to "delete", message_board_message_path(message_board_id: message.message_board.id, id: message.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>

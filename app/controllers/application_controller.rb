@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  def url_reset
+    session.delete(:url) if session[:url]
+  end
 end
