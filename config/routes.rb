@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
-  root 'welcome#index'
-  
-  get      'signup', to: 'users#new'
-  get      'login' , to: 'sessions#new'
-  post     'login' , to: 'sessions#create'
-  delete   'logout', to: 'sessions#destroy'
+  root 'welcome#home'
+
   get      'ranking/have', to: 'ranking#have', as: 'ranking_have'
   get      'ranking/want', to: 'ranking#want', as: 'ranking_want'
   
-  resources :users do
+  resources :users, only:[:show] do
     get 'message_boards' , to: 'users#message_boards', as: 'message_boards'
     get 'favorites', on: :member
   end
-  resources :sessions, only: [:new, :create, :destroy]
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
   resources :message_boards, only: [:index, :create, :show, :destroy] do

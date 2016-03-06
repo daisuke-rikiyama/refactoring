@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
     
-    def index
+    def home
         @items = Item.all.order(updated_at: :desc).limit(30)
     end
     

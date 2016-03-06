@@ -16,9 +16,9 @@
         <!-- この部分に追加していく。 -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <% unless logged_in? %>
-              <li><%= link_to "新規登録", signup_path %></li>
-              <li><%= link_to "ログイン", login_path %></li>
+            <% unless user_signed_in? %>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
             <% else %>
               <li>
                 <%= link_to new_item_path do %>
@@ -40,7 +40,7 @@
                   </li>
                   <li role="separator" class="divider"></li>
                   <li>
-                    <%= link_to "ログアウト" , logout_path, method: "delete" %>
+                    <%= link_to "ログアウト" , destroy_user_session_path, method: "delete" %>
                   </li>
                 </ul>
               </li>
@@ -66,7 +66,7 @@
                     <%= link_to "All MessageBoard" , message_boards_path  %>
                   </li>
                   <li>
-                    <%= link_to "My MessageBoard", user_message_boards_path(user_id: current_user.id) if logged_in? %>
+                    <%= link_to "My MessageBoard", user_message_boards_path(user_id: current_user.id) if user_signed_in? %>
                   </li>
                 </ul>
               </li>

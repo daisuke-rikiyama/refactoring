@@ -16,7 +16,7 @@
             <%= item.title %>
           </p>
         </div>
-        <%= render 'items/action' , item: item if logged_in? %>
+        <%= render 'items/action' , item: item if user_signed_in? %>
       </div>
     <% end %>
   </div>

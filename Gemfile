@@ -54,6 +54,10 @@ gem 'ckeditor'
 # amazon-ecs
 gem 'amazon-ecs'
 
+# アカウント、ログイン、ログアウト
+gem 'devise'
+gem 'devise-bootstrap-views'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
