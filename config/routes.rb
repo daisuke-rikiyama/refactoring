@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'message_boards' , to: 'users#message_boards', as: 'message_boards'
     get 'favorites', on: :member
   end
+  resources :account_activations, only: [:edit]
   resources :sessions, only: [:new, :create, :destroy]
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
