@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   mount Ckeditor::Engine => '/ckeditor'
   root 'welcome#index'
   
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'favorites', on: :member
   end
   resources :account_activations, only: [:edit]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
