@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-    before_action :logged_in_user, only: [:create, :edit]
+    before_action :logged_in_user
     before_action :set_message, only: [:edit, :update]
     
     def create

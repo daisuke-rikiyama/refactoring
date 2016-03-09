@@ -1,5 +1,5 @@
 class MessageBoardsController < ApplicationController
-    before_action :logged_in_user, only: [:create]
+    before_action :logged_in_user, only: [:create, :destroy]
     before_action :url_reset, only: [:index, :show]
     
     def index

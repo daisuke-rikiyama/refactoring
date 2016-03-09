@@ -102,3 +102,6 @@ group8.each { |user| user.have(item10) }
 group9.each { |user| user.have(item6) }
 group10.each { |user| user.have(item9) }
 user1.have(item7)
+
+# アカウント有効化
+users.each { |user| user.activate }
