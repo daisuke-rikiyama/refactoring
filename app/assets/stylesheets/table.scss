@@ -5,5 +5,13 @@
     
     th {
       white-space: nowrap;
-    }   
+    }
+    
+    tr {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      .btn {
+        margin-top: 0px;
+      }
+    }
 }

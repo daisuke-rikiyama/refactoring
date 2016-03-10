@@ -1,9 +1,20 @@
 <h1 align="center">Message Board</h1>
 
-<h2>Posted Message Boards</h2>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Posted Message Boards</h2>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
 
 <%= render 'shared/boards_list', message_boards: @message_boards %>
 
-<h2>Favorite Message Boards</h2>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Favorite Message Boards</h2>
+    </div>
+    <div class="col-md-2"></div>
+</div>
 
 <%= render 'shared/boards_list', message_boards: @favorite_boards %>

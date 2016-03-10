@@ -4,7 +4,8 @@
       投稿一覧
     </div>
     <div class="panel-body">
-      投稿者、内容、編集ボタン、削除ボタンを表示します。
+      <p>投稿者、内容、編集ボタン、削除ボタンを表示します。</p>
+      <p>投稿者部分をクリックすると、そのユーザーのページに移行します。</p>
     </div>
     <div class="table-wrap">
       <table class="table">
@@ -21,7 +22,7 @@
           <% @messages.each do |message| %>
             <tr>
               <td><%= message.id %></td>
-              <td><%= message.user.name %></td>
+              <td><%= link_to message.user.name, message.user, class:"btn btn-sm btn-default", style:"background: #000; color: #fff;" %></td>
               <td>
                 <%== message.content %>
                 
