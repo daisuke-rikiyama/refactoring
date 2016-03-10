@@ -44,8 +44,8 @@ module SessionsHelper
   
   # セッションタイムアウトの設定
   def time_out
-    if params[:session][:remember_me] == '0'
-      if logged_in? && session[:expires_at] < 60.minutes.ago
+    if logged_in? && !cookies.signed[:user_id]
+      if session[:expires_at] < 60.minutes.ago
         session.delete(:expires_at)
         log_out
         redirect_to root_url, notice: "セッションタイムアウト。再ログインしてください。"

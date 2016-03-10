@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <title>My MessageBoards - Let's use</title>
+  <meta name="description" content="<%= current_user.name %>に関連した掲示板一覧。
+    <%= current_user.name %>が作成した掲示板やお気に入り登録した掲示板を表示しています。"
+<% end %>
+
 <h1 align="center">Message Board</h1>
 
 <div class="row">

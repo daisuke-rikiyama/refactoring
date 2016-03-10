@@ -1,5 +1,9 @@
+<% content_for :head do %>
+  <title><%= user.name %> - Let's use</title>
+  <meta name="description" content="<%= user.name %>のモノページ。
+    <%= user.name %>の欲しいモノや持っているモノの一覧を表示しています。">
+<% end %>
+
 <%= render 'profile' , user: @user %>
 
 <%= render 'items/list' , items: @items %>
-
-<%= link_to "MessageBoard", user_message_boards_path(user_id: @user.id) %>
