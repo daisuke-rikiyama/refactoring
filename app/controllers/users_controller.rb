@@ -20,8 +20,9 @@ class UsersController < ApplicationController
     end
     
     def message_boards
-      @message_boards = current_user.message_boards.order(updated_at: :desc)
-      @favorite_boards = current_user.favorited_message_boards
+      @user = User.find(params[:user_id])
+      @message_boards = @user.message_boards.order(updated_at: :desc)
+      @favorite_boards = @user.favorited_message_boards
     end
     
     private

@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <title><%= @message_board.title %> - Let's use</title>
+  <meta name="description" content="<%= @message_board.title %> のページ。
+    掲示板を通してのユーザー同士の情報交換ができます。
+    メッセージの投稿、画像のアップロード、Youtubeの埋め込み等様々な方法で
+    ユーザーへ情報を発信してください。">
+<% end %>
+
 <h1 align="center"><%= @message_board.title %></h1>
 
 <%= render 'shared/messages_list', messages: @messages %>

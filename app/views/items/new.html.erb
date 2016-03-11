@@ -1,3 +1,9 @@
+<% content_for :head do %>
+  <title>Search Items - Let's use</title>
+  <meta name="description" content="Amazonの商品を検索するページ。各商品
+    を欲しければWant,持っていればHaveする事でリストを作成できます。">
+<% end %>
+
 <div class="search">
   <%= form_tag new_item_path , method: :get do %>
     <%= text_field_tag :q , params[:q], placeholder: "キーワードを入力", required: true %>

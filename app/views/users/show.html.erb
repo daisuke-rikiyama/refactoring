@@ -1,9 +1,17 @@
 <% content_for :head do %>
-  <title><%= user.name %> - Let's use</title>
-  <meta name="description" content="<%= user.name %>のモノページ。
-    <%= user.name %>の欲しいモノや持っているモノの一覧を表示しています。">
+  <title><%= @user.name %> - Let's use</title>
+  <meta name="description" content="<%= @user.name %>のページ。
+    <%= @user.name %>の欲しいモノや持っているモノの一覧を表示しています。
+    ページ下部リンクより、<%= @user.name %>に関連した掲示板の一覧ページに
+    移る事ができます。">
 <% end %>
 
 <%= render 'profile' , user: @user %>
 
 <%= render 'items/list' , items: @items %>
+<div class="row" style="margin: 30px 0;">
+  <div class="col-md-8 col-md-offset-2">
+    <%= link_to "#{@user.name} - MessageBoards List", user_message_boards_path(user_id: @user.id), style:"font-size: 20px;" %>
+  </div>
+  <div class="col-md-2"></div>
+</div>

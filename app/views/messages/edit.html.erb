@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>Edit message - Let's use</title>
+  <meta name="description" content="投稿メッセージの編集">
+<% end %>
+
 <h1 align="center">メッセージの編集</h1>
 
 <%= render 'edit_form' , { message: @message, message_board: @message.message_board } %>
