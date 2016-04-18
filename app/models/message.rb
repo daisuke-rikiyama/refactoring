@@ -7,4 +7,6 @@ class Message < ActiveRecord::Base
   validates :content, presence: true, length: { maximum:2000 }
   validates :video_url, format: { with: /\A(http|https):\/\/www\.youtube\.com\/watch\?v=.*\z/ },
                       allow_blank: true
+  has_many :clips, class_name: "Clip", foreign_key: "message_id", dependent: :destroy
+  has_many :users, through: :clips, source: :user
 end
