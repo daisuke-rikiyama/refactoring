@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
   resources :message_boards, only: [:index, :create, :show, :destroy] do
-    resources :messages, only: [:create, :edit, :update, :destroy]
+    resources :messages, only: [:create, :edit, :update, :destroy] do
+      resources :clips, only: [:create, :destroy]
+    end
     resources :favorites, only: [:create, :destroy]
   end
   # The priority is based upon order of creation: first created -> highest priority.
