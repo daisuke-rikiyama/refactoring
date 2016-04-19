@@ -35,7 +35,7 @@ class MessageBoardsController < ApplicationController
     def show
         @message_board = MessageBoard.find(params[:id])
         @message = current_user.messages.build
-        @messages = @message_board.messages.order(updated_at: :asc)
+        @messages = @message_board.messages.order(created_at: :asc)
     end
     
     def destroy

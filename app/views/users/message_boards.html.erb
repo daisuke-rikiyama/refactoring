@@ -1,9 +1,26 @@
+<% content_for :head do %>
+  <title><%= @user.name %>_MessageBoards - Let's use</title>
+  <meta name="description" content="<%= @user.name %>に関連した掲示板一覧。
+    <%= @user.name %>が作成した掲示板やお気に入り登録した掲示板を表示しています。"
+<% end %>
+
 <h1 align="center">Message Board</h1>
 
-<h2>Posted Message Boards</h2>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Posted Message Boards</h2>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
 
 <%= render 'shared/boards_list', message_boards: @message_boards %>
 
-<h2>Favorite Message Boards</h2>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Favorite Message Boards</h2>
+    </div>
+    <div class="col-md-2"></div>
+</div>
 
 <%= render 'shared/boards_list', message_boards: @favorite_boards %>

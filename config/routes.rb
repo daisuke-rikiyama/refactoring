@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root 'welcome#index'
   
-  get      'signup', to: 'users#new'
-  get      'login' , to: 'sessions#new'
-  post     'login' , to: 'sessions#create'
-  delete   'logout', to: 'sessions#destroy'
+  get      'signup'      , to: 'users#new'
+  get      'login'       , to: 'sessions#new'
+  post     'login'       , to: 'sessions#create'
+  delete   'logout'      , to: 'sessions#destroy'
   get      'ranking/have', to: 'ranking#have', as: 'ranking_have'
   get      'ranking/want', to: 'ranking#want', as: 'ranking_want'
+  get      'myclips'     , to: 'clips#index'
   
   resources :users do
     get 'message_boards' , to: 'users#message_boards', as: 'message_boards'
@@ -20,7 +21,9 @@ Rails.application.routes.draw do
   resources :items , only: [:new, :show]
   resources :ownerships, only: [:create , :destroy]
   resources :message_boards, only: [:index, :create, :show, :destroy] do
-    resources :messages, only: [:create, :edit, :update, :destroy]
+    resources :messages, only: [:create, :edit, :update, :destroy] do
+      resources :clips, only: [:create, :destroy]
+    end
     resources :favorites, only: [:create, :destroy]
   end
   # The priority is based upon order of creation: first created -> highest priority.

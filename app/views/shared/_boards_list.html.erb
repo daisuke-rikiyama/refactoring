@@ -5,36 +5,43 @@
         掲示板一覧
       </div>
       <div class="panel-body">
-        タイトル、投稿者、お気に入りボタン、削除ボタンを表示します。
+        <p>関連商品、タイトル、投稿者、お気に入りボタン、削除ボタンを表示します。</p>
+        <p>各項目をクリックする事で、該当ページに移行します。</p>
       </div>
       <div class="table-wrap">
         <table class="table">
           <thead>
             <tr>
-              <th>ID</th>
               <th>関連商品</th>
               <th>Title</th>
               <th>投稿者</th>
+              <th>投稿数</th>
+              <th>お気に入り登録数</th>
               <th>お気に入りボタン</th>
               <th>削除ボタン</th>
             </tr>
           </thead>
           <tbody>
             <% message_boards.each do |message_board| %>
-              <tr>
-                <td><%= message_board.id %></td>
-                <% if message_board.item %>
-                  <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-success" %></td>
-                <% else %>
-                  <td>雑談掲示板</td>
-                <% end %>
-                <td><%= link_to message_board.title, message_board, class: "label label-info" ,style: "color: #fff;" %></td>
-                <td><%= link_to message_board.user.name, message_board.user, class: "label label-default" , style: "color: #fff;" %></td>
-                <td><%= render 'shared/favorite_form', message_board: message_board %></td>
-                <% if current_user == message_board.user %>
-                  <td><%= link_to "delete", message_board, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>
-                <% end %>
-              </tr>
+                <tr>
+                  <% if message_board.item %>
+                    <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-success" %></td>
+                  <% else %>
+                    <td><%= link_to "雑談掲示板", "#", class: "btn btn-sm btn-success" %></td>
+                  <% end %>
+                  <td><%= link_to message_board.title, message_board, class: "btn btn-sm btn-info" ,style: "color: #fff;" %></td>
+                  <td><%= link_to message_board.user.name, message_board.user, class: "btn btn-sm btn-default" , style: "background: #000; color: #fff;" %></td>
+                  <td style="font-size: 20px;"><%= message_board.messages.count %></td>
+                  <td style="font-size: 20px;"><%= message_board.favorites.count %></td>
+                  <% if current_user == message_board.user %>
+                    <td></td>
+                  <% else %>
+                    <td><%= render 'shared/favorite_form', message_board: message_board %></td>
+                  <% end %>
+                  <% if current_user == message_board.user %>
+                    <td><%= link_to "delete", message_board, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>
+                  <% end %>
+                </tr>
             <% end %>
           </tbody>
         </table>

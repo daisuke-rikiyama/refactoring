@@ -18,6 +18,7 @@ module SessionsHelper
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id
+    session[:expires_at] = Time.zone.now
   end
   
   # ユーザーを永続的セッションに記憶する
@@ -39,6 +40,19 @@ module SessionsHelper
     current_user.forget
     session.delete(:user_id)
     @current_user = nil
+  end
+  
+  # セッションタイムアウトの設定
+  def time_out
+    if logged_in? && !cookies.signed[:user_id]
+      if session[:expires_at] < 60.minutes.ago
+        session.delete(:expires_at)
+        log_out
+        redirect_to root_url, notice: "セッションタイムアウト。再ログインしてください。"
+      else
+        session[:expires_at] = Time.zone.now
+      end
+    end
   end
 
   def store_location

@@ -4,15 +4,16 @@
       投稿一覧
     </div>
     <div class="panel-body">
-      投稿者、内容、編集ボタン、削除ボタンを表示します。
+      <p>投稿者、内容、編集ボタン、削除ボタンを表示します。</p>
+      <p>投稿者部分をクリックすると、そのユーザーのページに移行します。</p>
     </div>
     <div class="table-wrap">
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
             <th>投稿者</th>
             <th>内容</th>
+            <th>クリップ</th>
             <th>編集ボタン</th>
             <th>削除ボタン</th>
           </tr>
@@ -20,13 +21,17 @@
         <tbody>
           <% @messages.each do |message| %>
             <tr>
-              <td><%= message.id %></td>
-              <td><%= message.user.name %></td>
+              <td><%= link_to message.user.name, message.user, class:"btn btn-sm btn-default", style:"background: #000; color: #fff;" %></td>
               <td>
                 <%== message.content %>
                 
                 <%= cell(:youtube).(:show , message: message) %>
               </td>
+              <% if current_user == message.user %>
+                <td></td>
+              <% else %>
+                <td><%= render 'shared/clip_form', {message: message, message_board: @message_board} %></td>
+              <% end %>
               <% if current_user == message.user %>
                 <td><%= link_to "edit", edit_message_board_message_path(message_board_id: message.message_board.id, id: message.id), class: "btn btn-sm btn-warning", data: { no_turbolink: true } %></td>
                 <td><%= link_to "delete", message_board_message_path(message_board_id: message.message_board.id, id: message.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>

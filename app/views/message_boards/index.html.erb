@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <title>All MessageBoard - Let's use</title>
+  <meta name="description" content="全掲示板の一覧。このページでは雑談用の掲示板を作成できる。">
+<% end %>
+
 <h1 align="center">Message Board List</h1>
 
 <%= render 'shared/boards_list', message_boards: @message_boards %>

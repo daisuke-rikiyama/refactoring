@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save :downcase_email
   
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :messages , foreign_key: "user_id" , dependent: :destroy
   has_many :favorites, foreign_key: "user_id", dependent: :destroy
   has_many :favorited_message_boards, through: :favorites, source: :message_board
+  has_many :clips , class_name: "Clip", foreign_key: "user_id", dependent: :destroy
+  has_many :clip_messages , through: :clips, source: :message
   
   # 与えられた文字列のハッシュ値を返す
   def User.digest(string)
@@ -118,6 +120,22 @@ class User < ActiveRecord::Base
   
   def favorite?(message_board)
     favorited_message_boards.include?(message_board)
+  end
+  
+   # 投稿記事をクリップする
+  def clip(message)
+    clips.find_or_create_by(message_id: message.id)
+  end
+  
+  # 投稿記事のクリップを解除
+  def unclip(message)
+    clip = clips.find_by(message_id: message.id)
+    clip.destroy if clip
+  end
+  
+  # クリップしているかどうか？
+  def clip?(message)
+    clip_messages.include?(message)
   end
   
   private

@@ -1,0 +1,6 @@
+<%= link_to "Unclip",
+    message_board_message_clip_path(current_user.clips.find_by(message_id: message.id),
+                                    {message_id: message.id, message_board_id: message_board.id}),
+                                    class: "clip-#{message.id} btn btn-warning btn-sm",
+                                    remote: true,
+                                    method: :delete %>
