@@ -1,0 +1,1 @@
+$(".clip-<%= @message.id %>").replaceWith("<%= escape_javascript(render('shared/clip' , {message_board: @message_board, message: @message})) %>");

@@ -13,6 +13,7 @@
           <tr>
             <th>投稿者</th>
             <th>内容</th>
+            <th>クリップ</th>
             <th>編集ボタン</th>
             <th>削除ボタン</th>
           </tr>
@@ -26,6 +27,11 @@
                 
                 <%= cell(:youtube).(:show , message: message) %>
               </td>
+              <% if current_user == message.user %>
+                <td></td>
+              <% else %>
+                <td><%= render 'shared/clip_form', {message: message, message_board: @message_board} %></td>
+              <% end %>
               <% if current_user == message.user %>
                 <td><%= link_to "edit", edit_message_board_message_path(message_board_id: message.message_board.id, id: message.id), class: "btn btn-sm btn-warning", data: { no_turbolink: true } %></td>
                 <td><%= link_to "delete", message_board_message_path(message_board_id: message.message_board.id, id: message.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-sm btn-danger" %></td>

@@ -1,0 +1,7 @@
+<div id="clip">
+  <% if current_user.clip? message %>
+    <%= render 'shared/unclip', {message_board: message_board, message: message} %>
+  <% else %>
+    <%= render 'shared/clip', {message_board: message_board, message: message} %>
+  <% end %>
+</div>
