@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   root 'welcome#index'
   
-  get      'signup', to: 'users#new'
-  get      'login' , to: 'sessions#new'
-  post     'login' , to: 'sessions#create'
-  delete   'logout', to: 'sessions#destroy'
+  get      'signup'      , to: 'users#new'
+  get      'login'       , to: 'sessions#new'
+  post     'login'       , to: 'sessions#create'
+  delete   'logout'      , to: 'sessions#destroy'
   get      'ranking/have', to: 'ranking#have', as: 'ranking_have'
   get      'ranking/want', to: 'ranking#want', as: 'ranking_want'
+  get      'myclips'     , to: 'clips#index'
   
   resources :users do
     get 'message_boards' , to: 'users#message_boards', as: 'message_boards'

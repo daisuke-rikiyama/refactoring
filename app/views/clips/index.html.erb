@@ -1,0 +1,35 @@
+<h1 align="center">My Clips</h1>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      あなたがクリップした記事の一覧が表示されます。
+    </div>
+    <div class="panel-body">
+      
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>掲示板</th>
+            <th>投稿者</th>
+            <th>内容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @clips.each do |clip| %>
+            <tr>
+              <td><%= link_to clip.message.message_board.title, clip.message.message_board, class:"btn btn-sm btn-info" %></td>
+              <td><%= link_to clip.message.user.name, clip.message.user, class:"btn btn-sm btn-default", style:"background: #000; color: #fff;" %></td>
+              <td>
+                <%== clip.message.content %>
+                
+                <%= cell(:youtube).(:show , message: clip.message) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,10 @@
 class ClipsController < ApplicationController
     before_action :logged_in_user
     
+    def index
+        @clips = current_user.clips
+    end
+    
     def create
         @message_board = MessageBoard.find(params[:message_board_id])
         @message = Message.find(params[:message_id])
