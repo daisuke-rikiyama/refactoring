@@ -13,6 +13,9 @@
         <div class="form-group">
             <%= f.text_field :video_url, class: "form-control", placeholder: "Input Youtube Page URL" %>
         </div>
+        <div class="form-group">
+            <%= f.collection_select :item_id, current_user.items.uniq, :id, :title, prompt: "Select Featured Products", class: "form-control" %>
+        </div>
         <div class="submit-group">
           <%= f.submit "Update", class: "btn btn-primary" %>
         </div>
