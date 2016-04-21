@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
           </button>
           <div class="logo">
-            <%= link_to "Let's use", root_path, class: "navbar-brand" %>
+            <%= link_to "Goods Square", root_path, class: "navbar-brand" %>
           </div>
         </div>
         <!-- この部分に追加していく。 -->
@@ -70,7 +70,7 @@
                   </li>
                 </ul>
               </li>
-              <li><%= link_to "My Clips", myclips_path %></li> if logged_in?
+              <li><%= link_to "My Clips", myclips_path if logged_in? %></li>
             <% end %>
           </ul>
         </div>

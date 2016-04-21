@@ -25,7 +25,7 @@
               <td>
                 <%== message.content %>
                 
-                <%= render 'shared/item_img', item: message.item %>
+                <%= render 'shared/item_img', item: message.item  if message.item %>
                 
                 <%= cell(:youtube).(:show , message: message) %>
               </td>
