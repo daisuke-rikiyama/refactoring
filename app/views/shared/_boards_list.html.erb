@@ -25,9 +25,9 @@
             <% message_boards.each do |message_board| %>
                 <tr>
                   <% if message_board.item %>
-                    <td><%= link_to message_board.item.title, message_board.item, class: "btn btn-sm btn-success" %></td>
+                    <td><%= link_to message_board.item.title[0,20], message_board.item, class: "btn btn-sm btn-primary", style: "color: #fff;" %></td>
                   <% else %>
-                    <td><%= link_to "雑談掲示板", "#", class: "btn btn-sm btn-success" %></td>
+                    <td><%= link_to "雑談" , '#', class: "btn btn-success btn-sm" %></td>
                   <% end %>
                   <td><%= link_to message_board.title, message_board, class: "btn btn-sm btn-info" ,style: "color: #fff;" %></td>
                   <td><%= link_to message_board.user.name, message_board.user, class: "btn btn-sm btn-default" , style: "background: #000; color: #fff;" %></td>
