@@ -8,6 +8,6 @@
 
 <h1 align="center"><%= @message_board.title %></h1>
 
-<%= render 'shared/messages_list', messages: @messages %>
+<%= render 'shared/messages_list', messages: @messages, message_board: @message_board%>
 
 <%= render 'messages/post_form' , { message_board: @message_board , message: @message } %>

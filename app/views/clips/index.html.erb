@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <title>MyClip - Goods Square</title>
-  <meta name="description" content= "<%= @clips.user.name %>の
+  <meta name="description" content= "<%= current_user.name %>の
   　クリップ一覧ページ。クリップしたメッセージの一覧を表示します。" >
 <% end %>
 <h1 align="center">My Clips</h1>
@@ -28,6 +28,10 @@
               <td><%= link_to clip.message.user.name, clip.message.user, class:"btn btn-sm btn-default", style:"background: #000; color: #fff;" %></td>
               <td>
                 <%== clip.message.content %>
+                
+                <br>
+                
+                <%= render 'shared/item_img', item: clip.message.item  if clip.message.item %>
                 
                 <%= cell(:youtube).(:show , message: clip.message) %>
               </td>

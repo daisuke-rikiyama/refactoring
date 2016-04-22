@@ -1,7 +1,8 @@
 <div class="col-md-8 col-md-offset-2">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      投稿一覧
+      <p><%= link_to message_board.item.title, message_board.item , style:"color: #fff;" if message_board.item %></p>
+      <p>投稿一覧</p>
     </div>
     <div class="panel-body">
       <p>投稿者、内容、編集ボタン、削除ボタンを表示します。</p>
@@ -19,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @messages.each do |message| %>
+          <% messages.each do |message| %>
             <tr>
               <td><%= link_to message.user.name, message.user, class:"btn btn-sm btn-default", style:"background: #000; color: #fff;" %></td>
               <td>
@@ -32,7 +33,7 @@
               <% if current_user == message.user %>
                 <td></td>
               <% else %>
-                <td><%= render 'shared/clip_form', {message: message, message_board: @message_board} %></td>
+                <td><%= render 'shared/clip_form', {message: message, message_board: message.message_board} %></td>
               <% end %>
               <% if current_user == message.user %>
                 <td><%= link_to "edit", edit_message_board_message_path(message_board_id: message.message_board.id, id: message.id), class: "btn btn-sm btn-warning", data: { no_turbolink: true } %></td>

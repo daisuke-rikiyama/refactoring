@@ -1,5 +1,5 @@
 <%= link_to "Clip",
     message_board_message_clips_path({message_id: message.id, message_board_id: message_board.id}),
-    class: "clip-#{message.id} btn btn-warning btn-sm",
+    class: "clip-#{message.id} btn btn-info btn-sm",
     remote: true,
     method: :post %>
