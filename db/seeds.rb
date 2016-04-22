@@ -56,6 +56,18 @@ user20 = User.create(name: "mori"     , email: "test19@example.com" , password: 
 user21 = User.create(name: "ikeda"    , email: "test20@example.com" , password: "kirapass" , password_confirmation: "kirapass")
 user22 = User.create(name: "hashimoto", email: "test21@example.com" , password: "kirapass" , password_confirmation: "kirapass")
 
+board1 = MessageBoard.create(title: "テスト"  , user_id: 1, item_id: 5)
+board2 = MessageBoard.create(title: "テスト1" , user_id: 2, item_id: 5)
+board3 = MessageBoard.create(title: "テスト2" , user_id: 3, item_id: 5)
+board4 = MessageBoard.create(title: "テスト3" , user_id: 4, item_id: 5)
+board5 = MessageBoard.create(title: "テスト4" , user_id: 5, item_id: 5)
+
+message1 = Message.create(user_id: 1, message_board_id: 1, content: "メッセージ投稿")
+message1 = Message.create(user_id: 2, message_board_id: 1, content: "youtube埋め込み", video_url: "https://www.youtube.com/watch?v=GY7Ps8fqGdc")
+message1 = Message.create(user_id: 3, message_board_id: 1, content: "自分のアイテムリストから商品の紹介", item_id: 3)
+message1 = Message.create(user_id: 4, message_board_id: 1, content: "CKエディターを使用しての画像投稿もできます。")
+
+
 users = User.all
 group1 = users[0..5]
 group2 = users[6..10]
