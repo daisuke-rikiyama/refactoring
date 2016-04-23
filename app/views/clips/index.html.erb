@@ -19,6 +19,7 @@
             <th>掲示板</th>
             <th>投稿者</th>
             <th>内容</th>
+            <th>クリップボタン</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,11 @@
                 
                 <%= cell(:youtube).(:show , message: clip.message) %>
               </td>
+              <% if current_user == clip.message.user %>
+                <td></td>
+              <% else %>
+                <td><%= render 'shared/clip_form', {message: clip.message, message_board: clip.message.message_board} %></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
